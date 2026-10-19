@@ -41,6 +41,7 @@ for d in ${directories}; do
     continue;
   fi;
   remote_url="$(git remote -v | head -1 | sed -n 's/.*bitbucket.org/git@ssh.bitbucket.org/p' | uniq)"
+  remote_url="${remote_url%% *}"
   if [ -z "$remote_url" ]; then
     echo "No Bitbucket remote found for $d, skipping";
     cd ../ || (echo "Failed to cd back to parent directory" && exit 3);
